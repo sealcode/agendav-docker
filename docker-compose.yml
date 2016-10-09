@@ -1,0 +1,24 @@
+version: "2"
+
+services: 
+  agendav: 
+    image: janlo/agendav
+    environment:
+      AGENDAV_SERVER_NAME: webcal.sealcode.org
+      AGENDAV_TITLE: Sealcode calendar
+      AGENDAV_FOOTER: In Seal we trust
+      AGENDAV_DB_NAME: agendav
+      AGENDAV_DB_USER: agendav
+      AGENDAV_DB_PASSWORD: agendav
+      AGENDAV_CALDAV_SERVER: https://cal.kuba-orlik.name/
+      AGENDAV_TIMEZONE: Europe/Warsaw
+    links:
+      - agendav-db:postgres
+    restart: always
+    ports:
+      - "8080:80"
+  agendav-db: 
+    build: 
+      context: .
+      dockerfile: Dockerfile-db
+    restart: always

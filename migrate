@@ -1,0 +1,3 @@
+#/bin/bash
+
+docker-compose run agendav bash -c "cd /var/www/agendav && ./agendavcli  migrations:migrate"  
